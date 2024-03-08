@@ -1,3 +1,4 @@
+import 'package:bmicalculator/constants.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -54,7 +55,7 @@ class _MainPageState extends State<MainPage> {
                         // Added styles for the Text using style: TextStyle()
                         Text("176", 
                         style: TextStyle(
-                          color: Color(0xFFFF8888), 
+                          color: kTextColor, 
                           fontSize: 50, fontWeight: 
                           FontWeight.bold)
                         ),
@@ -85,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                         // Added styles for the Text using style: TextStyle()
                         Text("70", 
                         style: TextStyle(
-                          color: Color(0xFFFF8888), 
+                          color: kTextColor, 
                           fontSize: 50, fontWeight: 
                           FontWeight.bold)
                         ),
