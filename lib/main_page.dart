@@ -29,12 +29,14 @@ class _MainPageState extends State<MainPage> {
           color: Colors.white,
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
-                  // Warpped by a padding widget
-                  Padding( 
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
+                  // Warpped by a padding widget -> Changed to Container. No prob becuase it also has a padding attribute.
+                  Container( 
+                    // To minimize the color .withAlpha
+                    color: Colors.orange.withAlpha(50),
+                    padding: const EdgeInsets.all(8.0),
+                    child: const Column(
                       children: [
                         // You can use FontAwesome icons, Material icons etc. here
                         Icon(Icons.male, size: 150),
@@ -42,11 +44,13 @@ class _MainPageState extends State<MainPage> {
                       ],
                     ),
                   ),
-                  Spacer(), // Creates a space between widgets while getting the maximum space as it can get.
-                  // Warpped by a padding widget
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
+                  const Spacer(), // Creates a space between widgets while getting the maximum space as it can get.
+                  // Warpped by a padding widget -> Changed to Container. No prob becuase it also has a padding attribute.
+                  Container(
+                    // To minimize the color .withAlpha
+                    color: Colors.orange.withAlpha(50),
+                    padding: const EdgeInsets.all(8.0),
+                    child: const Column(
                       children: [
                         Icon(Icons.female, size: 150),
                         Text("Female"),
