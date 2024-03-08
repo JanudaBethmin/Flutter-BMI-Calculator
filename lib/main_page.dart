@@ -163,6 +163,9 @@ class _MainPageState extends State<MainPage> {
                   Text(
                   bmi.toStringAsFixed(2),
                   style: kOutputLabelStyle,
+                  ),Text(
+                  getResult(bmi),
+                  style: kInputLabelStyle,
                   ),
                 ],
               ),
@@ -180,6 +183,16 @@ class _MainPageState extends State<MainPage> {
 // Make the function double because we are returning a value from a devision
 double calculateBMI({required int height, required int weight}) {
     return weight / (height/100 * height/100);
+}
+
+String getResult(bmiValue) {
+  if (bmiValue >= 25) {
+    return "Overweight";
+  } else if (bmiValue > 18.5) {
+    return "Normal";
+  } else {
+    return "Overweight";
+  }
 }
 
 }
