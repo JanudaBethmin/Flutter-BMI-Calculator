@@ -15,6 +15,9 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: SafeArea (
         child : Container(
+          // We can either wrap the Colum with a padding widget or 
+          // We can simply use the padding property of the Container
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           color: Colors.white,
           child: const Column(
             children: [
@@ -44,6 +47,9 @@ class _MainPageState extends State<MainPage> {
                   )
                 ],
               ),
+              // You can't add a spacer here. Flutter can't identify how mush space it as.
+              // So we use a Sized box. It is a constant space that has a fixed size. Use height to make space vertically.
+              SizedBox(height: 50),
               Row(
                 children: [
                   // Warpped by a padding widget
@@ -54,10 +60,7 @@ class _MainPageState extends State<MainPage> {
                         Text("Height"),
                         // Added styles for the Text using style: TextStyle()
                         Text("176", 
-                        style: TextStyle(
-                          color: kTextColor, 
-                          fontSize: 50, fontWeight: 
-                          FontWeight.bold)
+                        style: kInputLabelStyle
                         ),
                         Row(
                           children: [
@@ -66,7 +69,7 @@ class _MainPageState extends State<MainPage> {
                               child: Icon(Icons.remove, size: 40)
                             ),
                             SizedBox(width: 20), // You can't add a spacer here. Flutter can't identify how mush space it as.
-                            // So we use a Sized box. It is a constant space that has a fixed size.
+                            // So we use a Sized box. It is a constant space that has a fixed size. Use width to make space horizonatlly.
                             FloatingActionButton(
                               onPressed: null,
                               child: Icon(Icons.add, size: 40)
@@ -85,10 +88,7 @@ class _MainPageState extends State<MainPage> {
                         Text("Weight"),
                         // Added styles for the Text using style: TextStyle()
                         Text("70", 
-                        style: TextStyle(
-                          color: kTextColor, 
-                          fontSize: 50, fontWeight: 
-                          FontWeight.bold)
+                        style: kInputLabelStyle 
                         ),
                         Row(
                           children: [
@@ -109,10 +109,13 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
+              SizedBox(height: 50),
               Column(
                 children: [
                   Text("BMI"),
-                  Text("22.22"),
+                  Text("22.22",
+                  style: kOutputLabelStyle,
+                  ),
                 ],
               ),
             ],
