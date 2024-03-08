@@ -12,6 +12,10 @@ class _MainPageState extends State<MainPage> {
 
   int height = 150;
   int weight = 70;
+  // We can't call a function, while intializing other parameters.
+  // So, we use late keyword to tell flutter that caluculate bmi later.
+  // Define the varibale but apply the value later.
+  late double bmi = calculateBMI(height:height, weight: weight);
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +79,10 @@ class _MainPageState extends State<MainPage> {
                               onPressed: () {
                                 // For changing the UI we need to put these under setState()
                                 setState(() {
-                                  height--;
+                                  if(height>0) height--;
+                                  // For every + or  - the bmi should change.
+                                  bmi = calculateBMI(height:height, weight: weight);
                                 });
-                                print(height);
                               },
                               child: const Icon(Icons.remove, size: 40)
                             ),
@@ -90,8 +95,9 @@ class _MainPageState extends State<MainPage> {
                                 // For changing the UI we need to put these under setState()
                                 setState(() {
                                   height++;
+                                  // For every + or  - the bmi should change.
+                                  bmi = calculateBMI(height:height, weight: weight);
                                 });
-                                print(height);
                               },
                               child: const Icon(Icons.add, size: 40)
                             ),
@@ -119,9 +125,10 @@ class _MainPageState extends State<MainPage> {
                               onPressed: () {
                                 // For changing the UI we need to put these under setState()
                                 setState(() {
-                                  weight--;
+                                  if(weight>0) weight--;
+                                  // For every + or  - the bmi should change.
+                                  bmi = calculateBMI(height:height, weight: weight);
                                 });
-                                print(weight);
                               },
                               child: const Icon(Icons.remove, size: 40)
                             ),
@@ -133,9 +140,10 @@ class _MainPageState extends State<MainPage> {
                               onPressed: () {
                                 // For changing the UI we need to put these under setState()
                                 setState(() {
-                                  weight++;
+                                 weight++;
+                                 // For every + or  - the bmi should change.
+                                 bmi = calculateBMI(height:height, weight: weight);
                                 });
-                                print(weight);
                               },
                               child: const Icon(Icons.add, size: 40)
                             ),
@@ -147,10 +155,13 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
               const SizedBox(height: 50),
-              const Column(
+              Column(
                 children: [
-                  Text("BMI"),
-                  Text("22.22",
+                  const Text("BMI"),
+                  // To write complex code after a $ we need to add {}
+                  // But for here we actually don't even want "" because it has become a string.
+                  Text(
+                  bmi.toStringAsFixed(2),
                   style: kOutputLabelStyle,
                   ),
                 ],
@@ -161,4 +172,14 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+
+// Becuase we have to call from multiple points of the code
+// we can use {} inside () to make them name parameters 
+// name parameters -> height: , weight: 
+// Add required becuase it's a name parameter
+// Make the function double because we are returning a value from a devision
+double calculateBMI({required int height, required int weight}) {
+    return weight / (height/100 * height/100);
+}
+
 }
