@@ -12,6 +12,9 @@ class _MainPageState extends State<MainPage> {
 
   int height = 150;
   int weight = 70;
+
+  String gender = '';
+
   // We can't call a function, while intializing other parameters.
   // So, we use late keyword to tell flutter that caluculate bmi later.
   // Define the varibale but apply the value later.
@@ -31,30 +34,62 @@ class _MainPageState extends State<MainPage> {
             children: [
               Row(
                 children: [
-                  // Warpped by a padding widget -> Changed to Container. No prob becuase it also has a padding attribute.
-                  Container( 
-                    // To minimize the color .withAlpha
-                    color: Colors.orange.withAlpha(50),
-                    padding: const EdgeInsets.all(8.0),
-                    child: const Column(
-                      children: [
-                        // You can use FontAwesome icons, Material icons etc. here
-                        Icon(Icons.male, size: 150),
-                        Text("Male"),
-                      ],
+                  // Wrapped by a padding widget -> Changed to Container. No prob becuase it also has a padding attribute.
+                  // Wrapped with a GestureDetector to make it work with Gestures like onTap.
+                  GestureDetector (
+                    onTap: () {
+                      // We need to update the State inorder to UI to update according to the value
+                      setState(() {
+                        gender = "M";
+                      });
+                    },
+                    child: Container( 
+                      // When we use decoration attribute we can't add the color atribute outside it.
+                      // It should be inside decoration.
+                      decoration: BoxDecoration(
+                        // To minimize the color .withAlpha
+                        // We can use ternary operator as a if else statement here
+                        color: gender == 'M'? Colors.orange.withAlpha(150) :  Colors.orange.withAlpha(50),
+                        // To adding a border radius
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: const Column(
+                        children: [
+                          // You can use FontAwesome icons, Material icons etc. here
+                          Icon(Icons.male, size: 150),
+                          Text("Male"),
+                        ],
+                      ),
                     ),
                   ),
                   const Spacer(), // Creates a space between widgets while getting the maximum space as it can get.
-                  // Warpped by a padding widget -> Changed to Container. No prob becuase it also has a padding attribute.
-                  Container(
-                    // To minimize the color .withAlpha
-                    color: Colors.orange.withAlpha(50),
-                    padding: const EdgeInsets.all(8.0),
-                    child: const Column(
-                      children: [
-                        Icon(Icons.female, size: 150),
-                        Text("Female"),
-                      ],
+                  // Wrapped by a padding widget -> Changed to Container. No prob becuase it also has a padding attribute.
+                  // Wrapped with a GestureDetector to make it work with Gestures like onTap.
+                  GestureDetector (
+                    onTap: () {
+                      // We need to update the State inorder to UI to update according to the value
+                      setState(() {
+                        gender = "F";
+                      });    
+                    },
+                    child: Container(
+                      // When we use decoration attribute we can't add the color atribute outside it.
+                      // It should be inside decoration.
+                      decoration: BoxDecoration(
+                        // To minimize the color .withAlpha
+                        // We can use ternary operator as a if else statement here
+                        color: gender == 'F'? Colors.orange.withAlpha(150) : Colors.orange.withAlpha(50), 
+                        // To adding a border radius
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: const Column(
+                        children: [
+                          Icon(Icons.female, size: 150),
+                          Text("Female"),
+                        ],
+                      ),
                     ),
                   )
                 ],
